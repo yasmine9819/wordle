@@ -4,8 +4,6 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import TextInput from "../TextInput";
 import GuessResult from "../GuessResult";
-import { range } from "../../utils";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -22,13 +20,7 @@ function Game() {
 
   return (
     <>
-      {range(1, 6).map((index) => (
-        <GuessResult
-          key={guesses[index - 1]?.id}
-          value={guesses[index - 1]?.value}
-        ></GuessResult>
-      ))}
-
+      <GuessResult guesses={guesses} />
       <TextInput guesses={guesses} addGuess={addNewGuess}></TextInput>
     </>
   );
